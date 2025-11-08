@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenWeather Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="{{ url_for('static', path='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Dashboard</h1>
+        
+        {% if not db_enabled %}
+            <div class="status-bar error">
+                <i class="fas fa-database"></i> Database is not connected. Historical data will not be available.
+            </div>
+        {% endif %}
+
+        <div class="weather-cards">
+            {% if weather_list %}
+                {% for weather in weather_list %}
+                    <div class="weather-card">
+                        {% if 'error' in weather %}
+                            <div class="error">
+                                <i class="fas fa-exclamation-circle"></i>
+                                {{ weather.error }}
+                            </div>
+                        {% else %}
+                            <h2>
+                                <i class="fas fa-map-marker-alt"></i>
+                                {{ weather.name }}, {{ weather.sys.country }}
+                            </h2>
+                            <div class="weather-time">
+                                <i class="fas fa-clock"></i>
+                                {{ weather.recorded_at_moscow.strftime('%d.%m.%Y %H:%M:%S') }} (МСК)
+                            </div>
+                            <div class="weather-info">
+                                <div class="weather-param">
+                                    <i class="fas fa-temperature-high"></i>
+                                    <span>{{ weather.main.temp }}°C</span>
+                                </div>
+                                <div class="weather-param">
+                                    <i class="fas fa-cloud"></i>
+                                    <span>{{ weather.weather[0].description }}</span>
+                                </div>
+                                <div class="weather-param">
+                                    <i class="fas fa-tint"></i>
+                                    <span>{{ weather.main.humidity }}%</span>
+                                </div>
+                                <div class="weather-param">
+                                    <i class="fas fa-wind"></i>
+                                    <span>{{ weather.wind.speed }} m/s</span>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    No weather data available.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html> 

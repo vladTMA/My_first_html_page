@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f4f4f4;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+img {
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+/* Стили для карточки */
+.app-card {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+.app-icon {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.app-content h2 {
+  margin: 0 0 10px;
+  color: #007acc;
+}
+
+.app-content p {
+  margin: 0 0 15px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.app-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007acc;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.app-button:hover {
+  background-color: #005f99;
+}
